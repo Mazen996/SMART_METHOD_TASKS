@@ -1,16 +1,20 @@
 int in1pin = 6;
-int in2pin = 7; // h bridge pins
+int in2pin = 7;
+int in3pin = 5;
+int in4pin = 4;  	// MOTOR DRIVER INPUT PINS 
 
 int leftButton = 8;
-int rightButton = 9; // buttons
+int rightButton = 9; 	// INPUT BUTTONS
 
 void setup() {
 
   pinMode(in1pin, OUTPUT);
-  pinMode(in2pin, OUTPUT); // outputs
+  pinMode(in2pin, OUTPUT);
+  pinMode(in3pin, OUTPUT);
+  pinMode(in4pin, OUTPUT);	  // OUTPUT DECLARATION 
 
   pinMode(leftButton, INPUT_PULLUP);
-  pinMode(rightButton, INPUT_PULLUP); // inputs w internal pullup resistors
+  pinMode(rightButton, INPUT_PULLUP); // INPUTS WITH INTERNAL PULLUP RESISTOR
   
 }
 
@@ -23,21 +27,25 @@ void loop() {
 
     digitalWrite(in1pin, HIGH); // make motor go one way
     digitalWrite(in2pin, LOW);
-    
+    digitalWrite(in3pin, HIGH); // make the other motor go one way
+    digitalWrite(in4pin, LOW);
   }
 
   else if (rightPinState == LOW) { // if right button is pressed ...
 
     digitalWrite(in1pin, LOW);
     digitalWrite(in2pin, HIGH); // make motor go other way
+    digitalWrite(in3pin, LOW);
+    digitalWrite(in4pin, HIGH); // make the other motor go the other way
 
-    
   }
 
   else { // if neither button is pressed ...
 
-    digitalWrite(in1pin, LOW); // nothing happens
+    digitalWrite(in1pin, LOW); 
     digitalWrite(in2pin, LOW); 
+    digitalWrite(in3pin, LOW); 
+    digitalWrite(in4pin, LOW); // nothing happens
     
   }
   
